@@ -40,7 +40,7 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-new_player = Player("Alec", room['outside'], room['outside'])
+current_player = Player("Alec", room['outside'])
 
 # Write a loop that:
 #
@@ -55,45 +55,46 @@ new_player = Player("Alec", room['outside'], room['outside'])
 
 
 while True:
+    cur_play = current_player
     # Printing current room name and description
     print("\n")
     print("-------------------------------------------------------------------")
+    print(textwrap.fill(  # TODO: randomize the "walks briskly"
+        f"\n  The traveler, {cur_play.name}, walks briskly into \n ", 65))  # This is for the player name, coming from the class Player
     print(textwrap.fill(
-        f"\n  {new_player.name}! \n ", 65))
-    print(textwrap.fill(
-        f"\n  {new_player.current_room}. \n ", 65))
+        f"\n  the {cur_play.room}. \n ", 65))  # This is for the room, coming from the class Player
     print("------------------------------------------------------------------- \n")
     # Allowing for user input
     user_input = input("~~~~> ")
 
     # N, S, E, W checks / movement
     if user_input == "n":
-        if new_player.current_room.n_to == None:
+        if cur_play.room.n_to == None:
             print(
-                f"That area is blocked, {new_player.name}. Select a new direction")
+                f"That area is blocked, {cur_play.name}. Please select a new direction.")
         else:
-            new_player.current_room = new_player.current_room.n_to
+            cur_play.room = cur_play.room.n_to
     elif user_input == "s":
-        if new_player.current_room.s_to == None:
+        if cur_play.room.s_to == None:
             print(
-                f"That area is blocked, {new_player.name}. Select a new direction")
+                f"That area is blocked, {cur_play.name}. Please select a new direction.")
         else:
-            new_player.current_room = new_player.current_room.s_to
+            cur_play.room = cur_play.room.s_to
     elif user_input == "e":
-        if new_player.current_room.e_to == None:
+        if cur_play.room.e_to == None:
             print(
-                f"That area is blocked, {new_player.name}. Select a new direction")
+                f"That area is blocked, {cur_play.name}. Please select a new direction.")
         else:
-            new_player.current_room = new_player.current_room.e_to
+            cur_play.room = cur_play.room.e_to
     elif user_input == "w":
-        if new_player.current_room.w_to == None:
+        if cur_play.room.w_to == None:
             print(
-                f"That area is blocked, {new_player.name}. Select a new direction")
+                f"That area is blocked, {cur_play.name}. Please select a new direction.")
         else:
-            new_player.current_room = new_player.current_room.w_to
+            cur_play.room = cur_play.room.w_to
     elif user_input == "q":
-        print("\nHave fun exploring the outside world, traveler.\n")
+        print(f"\nHave fun exploring the outside world, {cur_play.name}.\n")
         break
     else:
         print(
-            f"\n Oof, that should not have happened. \n This is embarrassing. \n")
+            f"\n Oof, that should not have happened. \n This is embarrassing. \n You tried moving to a location that does not exist! \n")
