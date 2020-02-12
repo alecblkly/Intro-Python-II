@@ -40,7 +40,6 @@ room['treasure'].s_to = room['narrow']
 
 # Make a new player object that is currently in the 'outside' room.
 new_player = Player("Alec", room['outside'])
-print(new_player)
 
 # Write a loop that:
 #
@@ -52,3 +51,24 @@ print(new_player)
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+while True:
+    # Printing current room name and description
+    print("\n")
+    print(" ------------------------------------------------------------------")
+    print(" |                                                                |")
+    print(" |                                                                |")
+    print(
+        f" | {new_player.name}! You look around, {new_player.current_room}.   |")
+    print(" |                                                                |")
+    print(" |                                                                |")
+    print(" ------------------------------------------------------------------ \n")
+    # Allowing for user input
+    user_input = input("~~~~> ")
+
+    # Have user input for quitting for ease of testing.
+    # Will move the quit command to the bottom of the statement
+    # Add N, S, E, W checks / movement
+    if user_input == "q":
+        print("\nHave fun exploring the outside world, traveler.\n")
+        break
