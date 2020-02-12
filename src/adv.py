@@ -1,5 +1,6 @@
 from room import Room
 from player import Player
+import textwrap
 
 # Declare all the rooms
 
@@ -39,7 +40,7 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-new_player = Player("Alec", room['outside'])
+new_player = Player("Alec", room['outside'], room['outside'])
 
 # Write a loop that:
 #
@@ -52,23 +53,47 @@ new_player = Player("Alec", room['outside'])
 #
 # If the user enters "q", quit the game.
 
+
 while True:
     # Printing current room name and description
     print("\n")
-    print(" ------------------------------------------------------------------")
-    print(" |                                                                |")
-    print(" |                                                                |")
-    print(
-        f" | {new_player.name}! You look around, {new_player.current_room}.   |")
-    print(" |                                                                |")
-    print(" |                                                                |")
-    print(" ------------------------------------------------------------------ \n")
+    print("-------------------------------------------------------------------")
+    print(textwrap.fill(
+        f"\n  {new_player.name}! \n ", 65))
+    print(textwrap.fill(
+        f"\n  {new_player.current_room}. \n ", 65))
+    print("------------------------------------------------------------------- \n")
     # Allowing for user input
     user_input = input("~~~~> ")
 
-    # Have user input for quitting for ease of testing.
-    # Will move the quit command to the bottom of the statement
-    # Add N, S, E, W checks / movement
-    if user_input == "q":
+    # N, S, E, W checks / movement
+    if user_input == "n":
+        if new_player.current_room.n_to == None:
+            print(
+                f"That area is blocked, {new_player.name}. Select a new direction")
+        else:
+            new_player.current_room = new_player.current_room.n_to
+    elif user_input == "s":
+        if new_player.current_room.s_to == None:
+            print(
+                f"That area is blocked, {new_player.name}. Select a new direction")
+        else:
+            new_player.current_room = new_player.current_room.s_to
+    elif user_input == "e":
+        if new_player.current_room.e_to == None:
+            print(
+                f"That area is blocked, {new_player.name}. Select a new direction")
+        else:
+            new_player.current_room = new_player.current_room.e_to
+    elif user_input == "w":
+        if new_player.current_room.w_to == None:
+            print(
+                f"That area is blocked, {new_player.name}. Select a new direction")
+        else:
+            new_player.current_room = new_player.current_room.w_to
+    elif user_input == "q":
         print("\nHave fun exploring the outside world, traveler.\n")
         break
+    else:
+        print(
+            f"\n Oof, that should not have happened. \n This is embarrassing. \n")
