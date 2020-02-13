@@ -39,13 +39,11 @@ room['treasure'].s_to = room['narrow']
 
 # Declaring items, will update item descriptions.
 item = {
-    'battleaxe': Item("battleaxe", "description"),
-    'bat': Item("bat", "description"),
-    'goblet': Item("goblet", "description"),
-    'potion': Item("potion", "description"),
-    'mace': Item("mace", "description"),
-    'square-shield': Item("square-shield", "description"),
-    'scimitar': Item("scimitar", "description")
+    'battleaxe': Item("battleaxe", "Large and red, perfect for vanishing foes."),
+    'bat': Item("bat", "Of course a bat would be in here!"),
+    'goblet': Item("goblet", "Filled to the brim with wine...you probably shouldn't drink it."),
+    'mace': Item("mace", "Sturdy, appears to be made of iron."),
+    'scimitar': Item("scimitar", "Glows red, whispers *I am now your favorite weapon*")
 }
 
 # Declaring where items are located
