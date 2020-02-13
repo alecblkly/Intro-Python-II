@@ -44,7 +44,7 @@ item = {
     'goblet': Item("goblet'", "description"),
     'potion': Item("potion", "description"),
     'mace': Item("mace", "description"),
-    'square shield': Item("square shield", "description"),
+    'square-shield': Item("square-shield", "description"),
     'scimitar': Item("scimitar", "description")
 }
 
@@ -53,7 +53,7 @@ room['outside'].add_item = item['battleaxe']
 room['foyer'].add_item = item['bat']
 room['overlook'].add_item = item['goblet']
 room['narrow'].add_item = item['mace']
-room['treasure'].add_item = item['square shield']
+room['treasure'].add_item = item['scimitar']
 
 #
 # Main
