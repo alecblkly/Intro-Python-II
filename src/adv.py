@@ -43,11 +43,11 @@ item = {
     'bat': Item("bat", "Of course a bat would be in here!"),
     'goblet': Item("goblet", "Filled to the brim with wine...you probably shouldn't drink it."),
     'mace': Item("mace", "Sturdy, appears to be made of iron."),
-    'scimitar': Item("scimitar", "Glows red, whispers *I am now your favorite weapon*")
+    'scimitar': Item("scimitar", "Glows red, whispers *I am now your favorite weapon*"),
+    'coin': Item("coin", "A sole coin")
 }
 
 # Declaring where items are located
-room['outside'].add_item = item['battleaxe']
 room['foyer'].add_item = item['bat']
 room['overlook'].add_item = item['goblet']
 room['narrow'].add_item = item['mace']
@@ -59,7 +59,8 @@ room['treasure'].add_item = item['scimitar']
 
 # Make a new player object that is currently in the 'outside' room.
 # Allowing user to pick their name
-current_player = Player(input("How may I refer to you? "), room['outside'])
+current_player = Player(input("How may I refer to you? "),
+                        room['outside'])
 
 # Starter text, welcomes player to the world and lets them know their options
 print(
@@ -73,14 +74,10 @@ print("'e' - To move East\n")
 print("'w' - To move West\n")
 print("'get [item name]' - To add an item to your inventory\n")
 print("'drop [item name]' - To drop the item in the current room\n")
+print("'leave' - To leave the item in the room\n")
 print("'i' - To check your current inventory\n")
 print("------------------------")
 print("'q' - To leave the world\n\n")
-
-
-moving_list = ["walked briskly", "quickly teleported",
-               "Naruto ran", "skipped joyfully", "sauntered", "playfully rolled"]
-walking_pattern = random.choice(moving_list)
 
 # Write a loop that:
 #
@@ -100,59 +97,13 @@ while True:
     # Allowing for user input
     user_input = input("~~~~> ")
 
-    # User goes North, "n"
-    if user_input == "n":
-        if cur_play.room.n_to == None:
-            print(
-                f"That area is blocked, {cur_play.name}. Please select a new direction.\n")
-        else:
-            cur_play.room = cur_play.room.n_to
-            print(textwrap.fill(
-                f"\n  You {walking_pattern} into the {cur_play.room}. \n ", 65))
-            print("---------------------------------------------------------------------")
-            print("The following items are found within the room:\n")
-            print(f"{cur_play.room.add_item}\n")
-    # User goes South, "s"
-    elif user_input == "s":
-        if cur_play.room.s_to == None:
-            print(
-                f"That area is blocked, {cur_play.name}. Please select a new direction.")
-        else:
-            cur_play.room = cur_play.room.s_to
-            print(textwrap.fill(
-                f"\n  You {walking_pattern} into the {cur_play.room}. \n ", 65))
-            print("---------------------------------------------------------------------")
-            print("The following items are found within the room:\n")
-            print(f"{cur_play.room.add_item}\n")
-    # User goes East, "e"
-    elif user_input == "e":
-        if cur_play.room.e_to == None:
-            print(
-                f"That area is blocked, {cur_play.name}. Please select a new direction.")
-        else:
-            cur_play.room = cur_play.room.e_to
-            print(textwrap.fill(
-                f"\n  You {walking_pattern} into the {cur_play.room}. \n ", 65))
-            print("---------------------------------------------------------------------")
-            print("The following items are found within the room:\n")
-            print(f"{cur_play.room.add_item}\n")
-    # User goes West, "w"
-    elif user_input == "w":
-        if cur_play.room.w_to == None:
-            print(
-                f"That area is blocked, {cur_play.name}. Please select a new direction.")
-        else:
-            cur_play.room = cur_play.room.w_to
-            print(textwrap.fill(
-                f"\n  You {walking_pattern} into the {cur_play.room}. \n ", 65))
-            print("---------------------------------------------------------------------")
-            print("The following items are found within the room:\n")
-            print(f"{cur_play.room.add_item}\n")
-    # User quits the game
+    # User selects direction
+    if user_input in ["n", "s", "e", "w"]:
+        cur_play.move(user_input)
     elif user_input == "q":
         print(f"\nHave fun exploring the outside world, {cur_play.name}.\n")
         break
-    # User selected something outside of N, S, E, W, or Q
+    # User selected something outside of given commands
     else:
         print(
             f"\n Oof, that should not have happened. \n This is embarrassing. \n You tried moving to a location that does not exist! \n")
