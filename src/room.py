@@ -10,11 +10,11 @@ class Room():
         self.s_to = None
         self.e_to = None
         self.w_to = None
-        self.item = None
+        self.inventory = []
 
     def __str__(self):
         return f"{self.name}, {self.description}"
 
-    def add_item(self, item):
-        self.item.append(item)
-        return f"{self.item}"
+    def add_item(self, inventory):
+        self.inventory.append(inventory)
+        return f"{self.inventory}"
