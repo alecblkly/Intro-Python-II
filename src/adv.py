@@ -1,5 +1,6 @@
 from room import Room
 from player import Player
+from item import Item
 import textwrap
 import random
 
@@ -35,6 +36,9 @@ room['overlook'].s_to = room['foyer']
 room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
+
+item = ["battleaxe", "bat", "goblet", "potion",
+        "mace", "square shield", "scimitar"]
 
 #
 # Main
