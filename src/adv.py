@@ -48,6 +48,12 @@ item = {
     'scimitar': Item("scimitar", "description")
 }
 
+# Declaring where items are located
+room['outside'].add_item = item['battleaxe']
+room['foyer'].add_item = item['bat']
+room['overlook'].add_item = item['goblet']
+room['narrow'].add_item = item['mace']
+room['treasure'].add_item = item['square shield']
 
 #
 # Main
@@ -81,6 +87,8 @@ while True:
     print(textwrap.fill(
         f"\n  the {cur_play.room}. \n ", 65))  # This is for the room, coming from the class Player
     print("------------------------------------------------------------------- \n")
+    print("An item is found within the room:\n")
+    print(f"{cur_play.room.add_item}\n")
 
     # Allowing for user input
     user_input = input("~~~~> ")
