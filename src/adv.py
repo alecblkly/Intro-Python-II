@@ -37,8 +37,17 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
-item = ["battleaxe", "bat", "goblet", "potion",
-        "mace", "square shield", "scimitar"]
+# Declaring items, will update item descriptions.
+item = {
+    'battleaxe': Item("battleaxe", "description"),
+    'bat': Item("bat", "description"),
+    'goblet': Item("goblet'", "description"),
+    'potion': Item("potion", "description"),
+    'mace': Item("mace", "description"),
+    'square shield': Item("square shield", "description"),
+    'scimitar': Item("scimitar", "description")
+}
+
 
 #
 # Main
